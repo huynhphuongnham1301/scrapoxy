@@ -1,4 +1,69 @@
-# Scrapoxy
+# Scrapoxy Proxy Filter
+
+This repository contains a **proxy filtering module** for Scrapoxy that allows you to filter proxies by:
+- **State/Country** (e.g., USA, UK, Canada)
+- **ASN (Autonomous System Number)** - both by number and name
+- **Datacenter detection** - identify and exclude datacenter IPs
+
+## 🎯 Features
+
+- ✅ Filter proxies by state (USA) with case-insensitive matching
+- ✅ Filter proxies by ASN number or ASN name
+- ✅ Exclude specific states or ASNs
+- ✅ Built-in list of common datacenter ASNs for filtering residential proxies
+- ✅ Combine multiple filter criteria
+- ✅ TypeScript support with full type definitions
+- ✅ 100% test coverage
+
+## 📦 Installation
+
+```bash
+npm install
+npm run build
+```
+
+## 🚀 Quick Start
+
+```javascript
+const { filterUSAProxies, filterUSAResidentialProxies } = require('./dist/proxy-filter');
+
+// Get only USA proxies
+const usaProxies = filterUSAProxies(proxies);
+
+// Get USA residential proxies (excludes datacenters)
+const residential = filterUSAResidentialProxies(proxies);
+```
+
+## 📖 Documentation
+
+- [EXAMPLES.md](EXAMPLES.md) - Detailed usage examples
+- [src/README.md](src/README.md) - Implementation details
+- [src/proxy-filter.ts](src/proxy-filter.ts) - Source code with JSDoc
+
+## 🧪 Testing
+
+```bash
+npm test              # Run all tests
+npm run test:watch    # Watch mode
+npm run test:coverage # With coverage report
+```
+
+## 💡 Example Usage
+
+Run the included example script:
+
+```bash
+npm run build
+node examples.js
+```
+
+This demonstrates filtering by:
+- State (USA)
+- ASN (exclude datacenters)
+- Specific ASN numbers
+- Combined criteria
+
+## 🔗 About Scrapoxy
 
 Scrapoxy is a **super proxies manager** that orchestrates all your proxies into **one place 🎯**,
 rather than spreading management across multiple scrapers 🕸️.
