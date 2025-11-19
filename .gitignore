@@ -3,6 +3,9 @@
 # compiled output
 /tmp
 /out-tsc
+*.js.map
+*.d.ts.map
+/dist/proxy-filter.*
 
 # cache
 .angular/cache
