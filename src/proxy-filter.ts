@@ -69,19 +69,22 @@ export function filterProxies(proxies: Proxy[], options: FilterOptions): Proxy[]
         
         // Filter by ASN name (inclusion)
         if (options.asnNames && options.asnNames.length > 0) {
-            if (!fingerprint.asnName || !options.asnNames.some(name => 
-                fingerprint.asnName!.toLowerCase().includes(name.toLowerCase())
-            )) {
+            if (!fingerprint.asnName) {
+                return false;
+            }
+            const asnNameLower = fingerprint.asnName.toLowerCase();
+            if (!options.asnNames.some(name => asnNameLower.includes(name.toLowerCase()))) {
                 return false;
             }
         }
         
         // Filter by ASN name (exclusion)
         if (options.excludeAsnNames && options.excludeAsnNames.length > 0) {
-            if (fingerprint.asnName && options.excludeAsnNames.some(name => 
-                fingerprint.asnName!.toLowerCase().includes(name.toLowerCase())
-            )) {
-                return false;
+            if (fingerprint.asnName) {
+                const asnNameLower = fingerprint.asnName.toLowerCase();
+                if (options.excludeAsnNames.some(name => asnNameLower.includes(name.toLowerCase()))) {
+                    return false;
+                }
             }
         }
         
@@ -110,6 +113,18 @@ export function excludeDatacenterASNs(proxies: Proxy[], asnNames: string[]): Pro
 
 /**
  * Common datacenter ASN names to filter out
+ * 
+ * This list includes well-known cloud and datacenter providers whose IP addresses
+ * are typically associated with hosting/cloud services rather than residential ISPs.
+ * These ASNs are commonly used when filtering for residential proxies.
+ * 
+ * Criteria for inclusion:
+ * - Major cloud providers (Google, Amazon, Microsoft, Cloudflare)
+ * - Popular VPS/dedicated server providers (Digital Ocean, Hetzner, OVH, Linode, Vultr)
+ * - IPs from these ASNs are typically flagged as datacenter IPs by websites
+ * 
+ * To extend this list, add ASN names of other known datacenter/cloud providers.
+ * Use partial names that will match variations (e.g., "Google" matches "Google LLC").
  */
 export const COMMON_DATACENTER_ASNS = [
     'Google LLC',
