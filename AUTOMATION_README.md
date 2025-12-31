@@ -35,12 +35,20 @@ pip install -r requirements.txt
 
 ### Full-featured script (recommended)
 ```bash
+# Run with browser staying open for verification
 python outlook_signup_automation.py
+
+# Run without waiting for user input (useful for automation/CI)
+python outlook_signup_automation.py --no-wait
 ```
 
 ### Simple script
 ```bash
+# Run with browser staying open for verification
 python simple_outlook_automation.py
+
+# Run without waiting for user input (useful for automation/CI)
+python simple_outlook_automation.py --no-wait
 ```
 
 ### Test script (headless mode)
@@ -52,6 +60,7 @@ Or make scripts executable and run directly:
 ```bash
 chmod +x outlook_signup_automation.py
 ./outlook_signup_automation.py
+./outlook_signup_automation.py --no-wait
 ```
 
 ## What the script does

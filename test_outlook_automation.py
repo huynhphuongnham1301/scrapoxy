@@ -35,9 +35,9 @@ def test_outlook_signup():
         
         # Step 2: Wait for page to load and look for email textbox
         print("\n✓ Test 2: Waiting for email textbox to appear...")
-        wait = WebDriverWait(driver, 15)
         
         # Try multiple possible selectors for the email field
+        # Using shorter wait time per selector for efficiency
         selectors = [
             (By.ID, "liveSwitch"),
             (By.NAME, "MemberName"),
@@ -49,6 +49,8 @@ def test_outlook_signup():
         email_field = None
         for by_method, selector in selectors:
             try:
+                # Use a shorter wait time (3 seconds) per selector
+                wait = WebDriverWait(driver, 3)
                 email_field = wait.until(
                     EC.presence_of_element_located((by_method, selector))
                 )
