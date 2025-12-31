@@ -1,6 +1,12 @@
 # Outlook Signup Automation
 
-This Python script automates the process of navigating to the Outlook signup page and entering an email address using Selenium WebDriver.
+This repository contains Python scripts that automate the process of navigating to the Outlook signup page and entering an email address using Selenium WebDriver.
+
+## Available Scripts
+
+1. **outlook_signup_automation.py** - Full-featured script with robust error handling and multiple selector fallbacks
+2. **simple_outlook_automation.py** - Simplified version with minimal code
+3. **test_outlook_automation.py** - Headless test version for automated testing
 
 ## Requirements
 
@@ -27,12 +33,22 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the script:
+### Full-featured script (recommended)
 ```bash
 python outlook_signup_automation.py
 ```
 
-Or make it executable and run directly:
+### Simple script
+```bash
+python simple_outlook_automation.py
+```
+
+### Test script (headless mode)
+```bash
+python test_outlook_automation.py
+```
+
+Or make scripts executable and run directly:
 ```bash
 chmod +x outlook_signup_automation.py
 ./outlook_signup_automation.py
